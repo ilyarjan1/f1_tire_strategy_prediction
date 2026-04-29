@@ -51,6 +51,34 @@ python src/knn_f1_strategy.py \
 - `outputs/best_knn_model.joblib`
 - `outputs/auto_report.md`
 
+## Portfolio-grade training pipeline (recommended)
+
+For stronger performance than plain KNN, use the resumable multi-model trainer:
+
+```bash
+python src/train_strategy_models.py \
+  --data data/f1_strategy.csv \
+  --target pit_stop \
+  --output-dir artifacts \
+  --random-state 42
+```
+
+Resume in a later session (useful for Colab disconnects):
+
+```bash
+python src/train_strategy_models.py \
+  --data data/f1_strategy.csv \
+  --target pit_stop \
+  --output-dir artifacts \
+  --random-state 42 \
+  --resume
+```
+
+Generated artifacts:
+- `artifacts/run_history.csv`
+- `artifacts/best_model_meta.json`
+- `artifacts/models/best_model.joblib`
+
 ## How this maps to your assignment
 
 Each rubric item (Introduction, Exploration, Preprocessing, Split, K choices, Training, Testing, Evaluation, Best model, Conclusion) is scaffolded in `report_template.md` and auto-supported by the outputs produced by the script.
